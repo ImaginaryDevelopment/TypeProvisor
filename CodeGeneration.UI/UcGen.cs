@@ -51,11 +51,6 @@ namespace CodeGeneration.UI
                 MessageBox.Show("No items imported");
                 return;
             }
-            if (cbName.SelectedIndex < 0 || cbName.Text.IsValueString() == false)
-            {
-                MessageBox.Show("Select the name of the item you wish to import");
-                return;
-            }
             if (cbType.SelectedIndex < 0 || cbType.Text.IsValueString() == false)
             {
                 MessageBox.Show("Select the type of generation you wish to use");
@@ -64,7 +59,7 @@ namespace CodeGeneration.UI
             switch (cbType.SelectedItem as GenerationTypes?)
             {
                 case GenerationTypes.FSharpRecord:
-                    this.tbOutput.Text = GenerateRecords();
+                    this.tbOutput.Text = GenerateRecords(cbName.Text);
                     break;
                 default:
                     MessageBox.Show("Not implemented");
@@ -73,10 +68,12 @@ namespace CodeGeneration.UI
             }
         }
 
-        string GenerateRecords()
+        string GenerateRecords(string name = null)
         {
             var records = this.Items
+                .Where(x => String.IsNullOrWhiteSpace(name) || x.Name == name)
                 .SelectMany(x => FSharp.generateRecord(true, x))
+                
                 .Select(x => IndentationImpl.toString("    ", x.Item1, x.Item2))
                 .Aggregate((s1, s2) => s1 + Environment.NewLine + s2);
             return records;
