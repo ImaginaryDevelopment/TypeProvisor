@@ -32,8 +32,10 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.txtTargetProjectName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ucBaseType1 = new CodeGeneration.UI.Controls.UcBaseType();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +49,10 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.treeView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.ucBaseType1);
             this.splitContainer1.Size = new System.Drawing.Size(794, 371);
             this.splitContainer1.SplitterDistance = 298;
             this.splitContainer1.TabIndex = 0;
@@ -75,6 +81,13 @@
             this.label1.TabIndex = 20;
             this.label1.Text = "Add Type Name";
             // 
+            // ucBaseType1
+            // 
+            this.ucBaseType1.Location = new System.Drawing.Point(76, 43);
+            this.ucBaseType1.Name = "ucBaseType1";
+            this.ucBaseType1.Size = new System.Drawing.Size(166, 30);
+            this.ucBaseType1.TabIndex = 1;
+            // 
             // UcAddType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -85,6 +98,7 @@
             this.Name = "UcAddType";
             this.Size = new System.Drawing.Size(800, 400);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -98,5 +112,6 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.TextBox txtTargetProjectName;
         private System.Windows.Forms.Label label1;
+        private UcBaseType ucBaseType1;
     }
 }
