@@ -44,6 +44,8 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="BReusable.fs" />
     <Compile Include="Schema.fs" />
+    <Compile Include="DotNet.fs" />
+    <Compile Include="CSharp.fs" />
     <Compile Include="FSharp.fs" />
     <None Include="SampleData.fsx" />
     <Content Include="packages.config" />

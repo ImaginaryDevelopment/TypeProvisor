@@ -15,7 +15,7 @@ namespace CodeGeneration.UI
     public enum GenerationTypes
     {
         FSharpRecord,
-        CSharpDTO
+        CSharpClass
     }
 
     public partial class UcGen : UserControl
@@ -23,7 +23,9 @@ namespace CodeGeneration.UI
         IReadOnlyList<TypeMeta> items;
         public IReadOnlyList<TypeMeta> Items
         {
-            get { return items; }
+            get {
+                return items;
+            }
             set
             {
                 items = value;
@@ -43,6 +45,11 @@ namespace CodeGeneration.UI
                 .ToList()
                 .ForEach(x => cbType.Items.Add(x));
         }
+        IEnumerable<TypeMeta> GetItems()
+        {
+            return this.Items
+                .Where(x => string.IsNullOrWhiteSpace(cbName?.Text) || x.Name == cbName?.Text);
+        }
 
         void btnGenerate_Click(object sender, EventArgs e)
         {
@@ -61,23 +68,32 @@ namespace CodeGeneration.UI
                 case GenerationTypes.FSharpRecord:
                     this.tbOutput.Text = GenerateRecords(cbName.Text);
                     break;
+                case GenerationTypes.CSharpClass:
+                    this.tbOutput.Text = GenerateCClass(cbName.Text);
+                    break;
+
                 default:
                     MessageBox.Show("Not implemented");
                     break;
 
             }
         }
+        string GenerateItems(Func<TypeMeta,IEnumerable<Tuple<int,string>>> f)
+        {
+            var mapped = GetItems()
+                .SelectMany(f)
+                .Select(x => IndentationImpl.toString("    ", x.Item1, x.Item2))
+                .Aggregate((s1, s2) => s1 + Environment.NewLine + s2);
+            return mapped;
+        }
 
         string GenerateRecords(string name = null)
         {
-            var records = this.Items
-                .Where(x => String.IsNullOrWhiteSpace(name) || x.Name == name)
-                .SelectMany(x => FSharp.generateRecord(true, x))
-                
-                .Select(x => IndentationImpl.toString("    ", x.Item1, x.Item2))
-                .Aggregate((s1, s2) => s1 + Environment.NewLine + s2);
-            return records;
-
+            return GenerateItems(x => FSharp.generateRecord(true,x));
+        }
+        string GenerateCClass(string name = null)
+        {
+            return GenerateItems(x => CSharp.generateClass(true, x));
         }
     }
 }

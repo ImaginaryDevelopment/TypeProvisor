@@ -1,22 +1,9 @@
 ﻿module TypeProvisor.FSharp
 
 open TypeProvisor
-
-let getTypeName =
-    function
-    | BaseType.Bool -> "bool"
-    | BaseType.Int -> "int"
-    | BaseType.Decimal -> "decimal"
-    | BaseType.String _ -> "string"
+open TypeProvisor.DotNet
 
 let generateRecordProperty useOptions {Name=pn;BaseType=bt;IsOptional=isOpt;Comments=c}:Indentables=
-    // works as long as there is no other column-type specific data (like lengthLimit,precision,scale)
-    let canUseNullable = 
-        function
-        | BaseType.Bool
-        | BaseType.Int
-        | BaseType.Decimal -> true
-        | _ -> false
     let t =
         if isOpt && not <| useOptions && canUseNullable bt then sprintf "%s Nullable"
         elif isOpt && useOptions then sprintf "%s option"
