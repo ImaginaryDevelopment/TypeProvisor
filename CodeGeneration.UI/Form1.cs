@@ -15,6 +15,14 @@ namespace CodeGeneration.UI
         public Form1()
         {
             InitializeComponent();
+            // TabIndexChanged 
+            this.tabControl1.SelectedIndexChanged += (_, __) =>
+             {
+                 if (!this.tabControl1.SelectedTab.Controls.Contains(this.ucGen1))
+                     return;
+                 this.ucGen1.TargetNamespace = this.ucSettings1.TargetNamespace;
+                 this.ucGen1.UseOptionTypes = this.ucSettings1.UseOptionTypes;
+             };
             this.ucJsonImport1.ImportedTypes += (_, e) => this.ucGen1.Items = e.ToArray();
         }
     }

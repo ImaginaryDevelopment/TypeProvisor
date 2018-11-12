@@ -12,18 +12,27 @@ using TypeProvisor;
 
 namespace CodeGeneration.UI
 {
-    public enum GenerationTypes
-    {
-        FSharpRecord,
-        CSharpClass
-    }
 
     public partial class UcGen : UserControl
     {
         IReadOnlyList<TypeMeta> items;
+        public bool UseOptionTypes { get; set; }
+        public bool Writable { get; set; }
+        public string TargetNamespace { get; set; }
+
+        public UcGen()
+        {
+            InitializeComponent();
+            Enum.GetNames(typeof(GenerationType))
+                .Select(v => Enum.Parse(typeof(GenerationType), v))
+                .ToList()
+                .ForEach(x => cbType.Items.Add(x));
+        }
+
         public IReadOnlyList<TypeMeta> Items
         {
-            get {
+            get
+            {
                 return items;
             }
             set
@@ -37,14 +46,7 @@ namespace CodeGeneration.UI
                 }
             }
         }
-        public UcGen()
-        {
-            InitializeComponent();
-            Enum.GetNames(typeof(GenerationTypes))
-                .Select(v => Enum.Parse(typeof(GenerationTypes), v))
-                .ToList()
-                .ForEach(x => cbType.Items.Add(x));
-        }
+
         IEnumerable<TypeMeta> GetItems()
         {
             return this.Items
@@ -63,37 +65,12 @@ namespace CodeGeneration.UI
                 MessageBox.Show("Select the type of generation you wish to use");
                 return;
             }
-            switch (cbType.SelectedItem as GenerationTypes?)
+            if (cbType.SelectedItem is GenerationType gt)
             {
-                case GenerationTypes.FSharpRecord:
-                    this.tbOutput.Text = GenerateRecords(cbName.Text);
-                    break;
-                case GenerationTypes.CSharpClass:
-                    this.tbOutput.Text = GenerateCClass(cbName.Text);
-                    break;
-
-                default:
-                    MessageBox.Show("Not implemented");
-                    break;
-
+                // if null comes back, don't set the text
+                if (CodeVisorAdapter.Generate(GetItems(), this.Writable, this.TargetNamespace, gt) is string result)
+                    this.tbOutput.Text = result;
             }
-        }
-        string GenerateItems(Func<TypeMeta,IEnumerable<Tuple<int,string>>> f)
-        {
-            var mapped = GetItems()
-                .SelectMany(f)
-                .Select(x => IndentationImpl.toString("    ", x.Item1, x.Item2))
-                .Aggregate((s1, s2) => s1 + Environment.NewLine + s2);
-            return mapped;
-        }
-
-        string GenerateRecords(string name = null)
-        {
-            return GenerateItems(x => FSharp.generateRecord(true,x));
-        }
-        string GenerateCClass(string name = null)
-        {
-            return GenerateItems(x => CSharp.generateClass(true, x));
         }
     }
 }
