@@ -28,35 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cbName = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.tbOutput = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbName = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // cbName
-            // 
-            this.cbName.FormattingEnabled = true;
-            this.cbName.Location = new System.Drawing.Point(44, 1);
-            this.cbName.Name = "cbName";
-            this.cbName.Size = new System.Drawing.Size(121, 21);
-            this.cbName.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Name";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(171, 4);
+            this.label2.Location = new System.Drawing.Point(3, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 3;
@@ -65,14 +48,14 @@
             // cbType
             // 
             this.cbType.FormattingEnabled = true;
-            this.cbType.Location = new System.Drawing.Point(212, 1);
+            this.cbType.Location = new System.Drawing.Point(40, 1);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(121, 21);
             this.cbType.TabIndex = 2;
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(339, -1);
+            this.btnGenerate.Location = new System.Drawing.Point(335, 0);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 23);
             this.btnGenerate.TabIndex = 4;
@@ -90,16 +73,33 @@
             this.tbOutput.Size = new System.Drawing.Size(795, 336);
             this.tbOutput.TabIndex = 5;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(167, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Name";
+            // 
+            // cbName
+            // 
+            this.cbName.FormattingEnabled = true;
+            this.cbName.Location = new System.Drawing.Point(208, 1);
+            this.cbName.Name = "cbName";
+            this.cbName.Size = new System.Drawing.Size(121, 21);
+            this.cbName.TabIndex = 6;
+            // 
             // UcGen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbName);
             this.Controls.Add(this.tbOutput);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbType);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbName);
             this.Name = "UcGen";
             this.Size = new System.Drawing.Size(795, 364);
             this.ResumeLayout(false);
@@ -108,12 +108,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox cbName;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.TextBox tbOutput;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbName;
     }
 }

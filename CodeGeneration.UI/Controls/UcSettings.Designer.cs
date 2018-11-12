@@ -61,7 +61,7 @@
             // 
             // txtTargetNamespace
             // 
-            this.txtTargetNamespace.Location = new System.Drawing.Point(319, 1);
+            this.txtTargetNamespace.Location = new System.Drawing.Point(315, 1);
             this.txtTargetNamespace.Name = "txtTargetNamespace";
             this.txtTargetNamespace.Size = new System.Drawing.Size(100, 20);
             this.txtTargetNamespace.TabIndex = 21;

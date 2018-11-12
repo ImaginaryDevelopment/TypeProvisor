@@ -23,7 +23,12 @@ namespace CodeGeneration.UI
                  this.ucGen1.TargetNamespace = this.ucSettings1.TargetNamespace;
                  this.ucGen1.UseOptionTypes = this.ucSettings1.UseOptionTypes;
              };
-            this.ucJsonImport1.ImportedTypes += (_, e) => this.ucGen1.Items = e.ToArray();
+            this.ucJsonImport1.ImportedTypes += (_, e) =>
+            {
+                var items = e.ToArray();
+                this.ucAddType1.Items = items;
+                this.ucGen1.Items = items;
+            };
         }
     }
 }

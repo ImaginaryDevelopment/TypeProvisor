@@ -35,17 +35,20 @@
             this.tsStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbSettings = new System.Windows.Forms.TabPage();
-            this.ucSettings1 = new CodeGeneration.UI.UcSettings();
             this.tbJson = new System.Windows.Forms.TabPage();
-            this.ucJsonImport1 = new CodeGeneration.UI.UcJsonImport();
             this.tbGen = new System.Windows.Forms.TabPage();
+            this.tbTypes = new System.Windows.Forms.TabPage();
+            this.ucSettings1 = new CodeGeneration.UI.UcSettings();
+            this.ucJsonImport1 = new CodeGeneration.UI.UcJsonImport();
             this.ucGen1 = new CodeGeneration.UI.UcGen();
+            this.ucAddType1 = new CodeGeneration.UI.Controls.UcAddType();
             ((System.ComponentModel.ISupportInitialize)(this.bsTables)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tbSettings.SuspendLayout();
             this.tbJson.SuspendLayout();
             this.tbGen.SuspendLayout();
+            this.tbTypes.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -69,6 +72,7 @@
             this.tabControl1.Controls.Add(this.tbSettings);
             this.tabControl1.Controls.Add(this.tbJson);
             this.tabControl1.Controls.Add(this.tbGen);
+            this.tabControl1.Controls.Add(this.tbTypes);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -87,13 +91,6 @@
             this.tbSettings.Text = "Settings";
             this.tbSettings.UseVisualStyleBackColor = true;
             // 
-            // ucSettings1
-            // 
-            this.ucSettings1.Location = new System.Drawing.Point(6, 6);
-            this.ucSettings1.Name = "ucSettings1";
-            this.ucSettings1.Size = new System.Drawing.Size(764, 276);
-            this.ucSettings1.TabIndex = 0;
-            // 
             // tbJson
             // 
             this.tbJson.Controls.Add(this.ucJsonImport1);
@@ -106,14 +103,6 @@
             this.tbJson.ToolTipText = "Input data models by JSON text";
             this.tbJson.UseVisualStyleBackColor = true;
             // 
-            // ucJsonImport1
-            // 
-            this.ucJsonImport1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucJsonImport1.Location = new System.Drawing.Point(3, 3);
-            this.ucJsonImport1.Name = "ucJsonImport1";
-            this.ucJsonImport1.Size = new System.Drawing.Size(786, 396);
-            this.ucJsonImport1.TabIndex = 0;
-            // 
             // tbGen
             // 
             this.tbGen.Controls.Add(this.ucGen1);
@@ -125,6 +114,32 @@
             this.tbGen.Text = "Generate";
             this.tbGen.UseVisualStyleBackColor = true;
             // 
+            // tbTypes
+            // 
+            this.tbTypes.Controls.Add(this.ucAddType1);
+            this.tbTypes.Location = new System.Drawing.Point(4, 22);
+            this.tbTypes.Name = "tbTypes";
+            this.tbTypes.Padding = new System.Windows.Forms.Padding(3);
+            this.tbTypes.Size = new System.Drawing.Size(792, 402);
+            this.tbTypes.TabIndex = 3;
+            this.tbTypes.Text = "Types";
+            this.tbTypes.UseVisualStyleBackColor = true;
+            // 
+            // ucSettings1
+            // 
+            this.ucSettings1.Location = new System.Drawing.Point(6, 6);
+            this.ucSettings1.Name = "ucSettings1";
+            this.ucSettings1.Size = new System.Drawing.Size(764, 276);
+            this.ucSettings1.TabIndex = 0;
+            // 
+            // ucJsonImport1
+            // 
+            this.ucJsonImport1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucJsonImport1.Location = new System.Drawing.Point(3, 3);
+            this.ucJsonImport1.Name = "ucJsonImport1";
+            this.ucJsonImport1.Size = new System.Drawing.Size(786, 396);
+            this.ucJsonImport1.TabIndex = 0;
+            // 
             // ucGen1
             // 
             this.ucGen1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -133,6 +148,18 @@
             this.ucGen1.Name = "ucGen1";
             this.ucGen1.Size = new System.Drawing.Size(786, 396);
             this.ucGen1.TabIndex = 0;
+            this.ucGen1.TargetNamespace = null;
+            this.ucGen1.UseOptionTypes = false;
+            this.ucGen1.Writable = false;
+            // 
+            // ucAddType1
+            // 
+            this.ucAddType1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucAddType1.Items = null;
+            this.ucAddType1.Location = new System.Drawing.Point(3, 3);
+            this.ucAddType1.Name = "ucAddType1";
+            this.ucAddType1.Size = new System.Drawing.Size(786, 396);
+            this.ucAddType1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -150,6 +177,7 @@
             this.tbSettings.ResumeLayout(false);
             this.tbJson.ResumeLayout(false);
             this.tbGen.ResumeLayout(false);
+            this.tbTypes.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,6 +195,8 @@
         private UcSettings ucSettings1;
         private System.Windows.Forms.TabPage tbGen;
         private UcGen ucGen1;
+        private System.Windows.Forms.TabPage tbTypes;
+        private Controls.UcAddType ucAddType1;
     }
 }
 
