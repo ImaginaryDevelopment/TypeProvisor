@@ -52,11 +52,14 @@ namespace CodeGeneration.UI
                 MessageBox.Show("Select the type of generation you wish to use");
                 return;
             }
-            var records = this.Items
-                .SelectMany(x => FSharp.generateRecord(true, x))
-                .Select(x => IndentationImpl.toString("    ",x.Item1, x.Item2))
-                .Aggregate((s1,s2) => s1 + Environment.NewLine + s2);
-            tbOutput.Text = records;
+            if (cbType.Text=="FSharp Record")
+            {
+                var records = this.Items
+                    .SelectMany(x => FSharp.generateRecord(true, x))
+                    .Select(x => IndentationImpl.toString("    ",x.Item1, x.Item2))
+                    .Aggregate((s1,s2) => s1 + Environment.NewLine + s2);
+                tbOutput.Text = records;
+            }
 
         }
     }
