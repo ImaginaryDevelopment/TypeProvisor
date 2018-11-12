@@ -12,6 +12,12 @@ using TypeProvisor;
 
 namespace CodeGeneration.UI
 {
+    public enum GenerationTypes
+    {
+        FSharpRecord,
+        CSharpDTO
+    }
+
     public partial class UcGen : UserControl
     {
         IReadOnlyList<TypeMeta> items;
@@ -32,7 +38,10 @@ namespace CodeGeneration.UI
         public UcGen()
         {
             InitializeComponent();
-            cbType.Items.Add("FSharp Record");
+            Enum.GetNames(typeof(GenerationTypes))
+                .Select(v => Enum.Parse(typeof(GenerationTypes), v))
+                .ToList()
+                .ForEach(x => cbType.Items.Add(x));
         }
 
         void btnGenerate_Click(object sender, EventArgs e)
@@ -52,14 +61,25 @@ namespace CodeGeneration.UI
                 MessageBox.Show("Select the type of generation you wish to use");
                 return;
             }
-            if (cbType.Text=="FSharp Record")
+            switch (cbType.SelectedItem as GenerationTypes?)
             {
-                var records = this.Items
-                    .SelectMany(x => FSharp.generateRecord(true, x))
-                    .Select(x => IndentationImpl.toString("    ",x.Item1, x.Item2))
-                    .Aggregate((s1,s2) => s1 + Environment.NewLine + s2);
-                tbOutput.Text = records;
+                case GenerationTypes.FSharpRecord:
+                    this.tbOutput.Text = GenerateRecords();
+                    break;
+                default:
+                    MessageBox.Show("Not implemented");
+                    break;
+
             }
+        }
+
+        string GenerateRecords()
+        {
+            var records = this.Items
+                .SelectMany(x => FSharp.generateRecord(true, x))
+                .Select(x => IndentationImpl.toString("    ", x.Item1, x.Item2))
+                .Aggregate((s1, s2) => s1 + Environment.NewLine + s2);
+            return records;
 
         }
     }
