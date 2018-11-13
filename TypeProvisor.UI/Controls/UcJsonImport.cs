@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TypeProvisor;
 
-namespace CodeGeneration.UI
+namespace TypeProvisor.UI
 {
     // perhaps one day, make it able to import other types besides just dataModels
     public partial class UcJsonImport : UserControl

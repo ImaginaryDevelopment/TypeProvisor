@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8B3BD565-1152-4E7D-B7F5-BA6354F117C3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CodeGeneration.UI</RootNamespace>
-    <AssemblyName>CodeGeneration.UI</AssemblyName>
+    <RootNamespace>TypeProvisor.UI</RootNamespace>
+    <AssemblyName>TypeProvisor.UI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -113,6 +113,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Controls\UcGen.resx">
       <DependentUpon>UcGen.cs</DependentUpon>

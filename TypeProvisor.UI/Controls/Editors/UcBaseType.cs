@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CodeGeneration.UI.Controls
+namespace TypeProvisor.UI.Controls
 {
     [Designer(typeof(UcBaseTypeDesigner))]
     public partial class UcBaseType : UserControl

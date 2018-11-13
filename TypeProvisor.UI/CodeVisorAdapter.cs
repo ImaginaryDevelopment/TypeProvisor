@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TypeProvisor;
 
-namespace CodeGeneration.UI
+namespace TypeProvisor.UI
 {
     public enum GenerationLanguages
     {

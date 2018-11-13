@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-namespace CodeGeneration.UI
+namespace TypeProvisor.UI
 {
     static class Helpers
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.FSharp.Collections;
 using Microsoft.FSharp.Core;
 
-namespace CodeGeneration.UI
+namespace TypeProvisor.UI
 {
     public static class FHelpers
     {

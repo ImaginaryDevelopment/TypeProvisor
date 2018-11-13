@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using System.Windows.Forms.Design.Behavior;
 
-namespace CodeGeneration.UI.Controls
+namespace TypeProvisor.UI.Controls
 {
     class UcBaseTypeDesigner : MyCustomDesigner<UcBaseType>
     {

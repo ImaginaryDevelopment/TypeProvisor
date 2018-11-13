@@ -1,4 +1,4 @@
-﻿namespace CodeGeneration.UI.Controls
+﻿namespace TypeProvisor.UI.Controls
 {
     partial class UcBaseType
     {

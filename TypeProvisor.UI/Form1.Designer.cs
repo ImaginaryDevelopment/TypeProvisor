@@ -1,4 +1,4 @@
-﻿namespace CodeGeneration.UI
+﻿namespace TypeProvisor.UI
 {
     partial class Form1
     {
@@ -38,10 +38,10 @@
             this.tbJson = new System.Windows.Forms.TabPage();
             this.tbGen = new System.Windows.Forms.TabPage();
             this.tbTypes = new System.Windows.Forms.TabPage();
-            this.ucSettings1 = new CodeGeneration.UI.UcSettings();
-            this.ucJsonImport1 = new CodeGeneration.UI.UcJsonImport();
-            this.ucGen1 = new CodeGeneration.UI.UcGen();
-            this.ucAddType1 = new CodeGeneration.UI.Controls.UcAddType();
+            this.ucSettings1 = new TypeProvisor.UI.UcSettings();
+            this.ucJsonImport1 = new TypeProvisor.UI.UcJsonImport();
+            this.ucGen1 = new TypeProvisor.UI.UcGen();
+            this.ucAddType1 = new TypeProvisor.UI.Controls.UcAddType();
             ((System.ComponentModel.ISupportInitialize)(this.bsTables)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TypeProvisor;
 
-namespace CodeGeneration.UI.Controls
+namespace TypeProvisor.UI.Controls
 {
     public partial class UcAddType : UserControl
     {

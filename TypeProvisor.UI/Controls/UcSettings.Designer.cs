@@ -1,4 +1,4 @@
-﻿namespace CodeGeneration.UI
+﻿namespace TypeProvisor.UI
 {
     partial class UcSettings
     {

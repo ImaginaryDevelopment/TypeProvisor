@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CodeGeneration.UI
+namespace TypeProvisor.UI
 {
     public partial class UcSettings : UserControl
     {

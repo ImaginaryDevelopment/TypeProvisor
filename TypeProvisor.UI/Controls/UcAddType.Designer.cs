@@ -1,4 +1,4 @@
-﻿namespace CodeGeneration.UI.Controls
+﻿namespace TypeProvisor.UI.Controls
 {
     partial class UcAddType
     {
@@ -32,7 +32,7 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.txtTargetProjectName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.ucBaseType1 = new CodeGeneration.UI.Controls.UcBaseType();
+            this.ucBaseType1 = new TypeProvisor.UI.Controls.UcBaseType();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
