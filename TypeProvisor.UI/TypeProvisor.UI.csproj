@@ -55,24 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeVisorAdapter.cs" />
-    <Compile Include="Controls\CustomDesigner.cs" />
-    <Compile Include="Controls\Editors\UcBaseType.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Editors\UcBaseType.Designer.cs">
-      <DependentUpon>UcBaseType.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\UcAddType.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UcAddType.Designer.cs">
       <DependentUpon>UcAddType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Editors\UcComboBoxType.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Editors\UcComboBoxType.Designer.cs">
-      <DependentUpon>UcComboBoxType.cs</DependentUpon>
     </Compile>
     <Compile Include="FHelpers.cs" />
     <Compile Include="Form1.cs">
@@ -102,12 +89,6 @@
     <Compile Include="Controls\UcSettings.Designer.cs">
       <DependentUpon>UcSettings.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Controls\Editors\UcBaseType.resx">
-      <DependentUpon>UcBaseType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Editors\UcComboBoxType.resx">
-      <DependentUpon>UcComboBoxType.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UcAddType.resx">
       <DependentUpon>UcAddType.cs</DependentUpon>
     </EmbeddedResource>

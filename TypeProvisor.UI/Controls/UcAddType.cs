@@ -20,7 +20,19 @@ namespace TypeProvisor.UI.Controls
         public UcAddType()
         {
             InitializeComponent();
+            foreach (var x in BaseTypeModule.getDefaults()) this.comboBox1.Items.Add(x);
             RefreshTypes();
+        }
+
+        public BaseType SelectedBaseType
+        {
+            get
+            {
+                if (this.comboBox1.SelectedItem is BaseType bt)
+                    return bt;
+                return this.comboBox1.SelectedItem as BaseType;
+            }
+            set { this.comboBox1.SelectedItem = value; }
         }
 
         public void RefreshTypes()
@@ -39,11 +51,11 @@ namespace TypeProvisor.UI.Controls
             var children = tm.Properties.Select(p =>
                 new TreeNode(p.Name, new[]
                 {
-                        new TreeNode("Type:" + p.BaseType.ToString()){Tag=p.BaseType},
-                        new TreeNode("IsOptional:" + p.IsOptional.ToString()){Tag=p.IsOptional}
-                }
-            )
-                { Tag = p }).ToArray();
+                    new TreeNode("Type:" + p.BaseType.ToString()){Tag=p.BaseType},
+                    new TreeNode("IsOptional:" + p.IsOptional.ToString()){Tag=p.IsOptional}
+                })
+                { Tag = p })
+                .ToArray();
             var tn = new TreeNode(tm.Name, children) { Tag = tm };
             return tn;
         }
@@ -87,7 +99,9 @@ namespace TypeProvisor.UI.Controls
             if (node.Tag is Property p && p.Name == propertyName) return node;
             if (node.Tag is TypeMeta tm)
             {
-                return node.Nodes.Cast<TreeNode>().FirstOrDefault(tn => ((tn.Tag as Property)?.Name == propertyName));
+                var nodes = node.Nodes.Cast<TreeNode>().toList();
+                var target = nodes.FirstOrDefault(tn => ((tn.Tag as Property)?.Name == propertyName));
+                return target;
             }
             return null;
         }
@@ -96,26 +110,41 @@ namespace TypeProvisor.UI.Controls
         {
             if (FindPropertyTypeNode(this.treeView1.SelectedNode) is TreeNode typeNode && typeNode.Tag is Property p)
             {
-                this.ucBaseType1.SelectedBaseType = p.BaseType;
+                this.SelectedBaseType = p.BaseType;
+                this.textBox1.Text = p.Name;
             }
-            else this.ucBaseType1.SelectedBaseType = null;
+            else this.SelectedBaseType = null;
+        }
+
+        void ReplaceProp(string propertyName, Func<Property, bool> isChanged, Func<Property, Property> constructor)
+        {
+            // find the parent typeMeta node, and the 
+            if (FindTypeMetaNode(this.treeView1.SelectedNode) is TreeNode typeNode && typeNode.Tag is TypeMeta tm
+                && FindPropertyTypeNode(typeNode, propertyName) is TreeNode propNode && propNode.Tag is Property p)
+            {
+                if (!isChanged(p)) return;
+                var props = tm.Properties.Select(x => x.Name == p.Name
+                ? constructor(x)
+                : x).toList();
+                var rTm = new TypeMeta(tm.Name, props, tm.Comments);
+                ReplaceTreeNode(typeNode, rTm, p.Name);
+            }
         }
 
         void ucBaseType1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FindPropertyTypeNode(this.treeView1.SelectedNode) is TreeNode typeNode && typeNode.Tag is Property p
-                && FindTypeMetaNode(typeNode) is TreeNode typeMetaNode && typeMetaNode.Tag is TypeMeta tm)
-            {
-                if (p.BaseType != this.ucBaseType1.SelectedBaseType)
-                {
-                    var props =
-                        tm.Properties.Select(x => x.Name == p.Name
-                        ? new Property(x.Name, this.ucBaseType1.SelectedBaseType, x.IsOptional, x.Comments, x.Cardinality)
-                        : x).toList();
-                    var rTm = new TypeMeta(tm.Name, props, tm.Comments);
-                    ReplaceTreeNode(typeMetaNode, rTm, p.Name);
-                }
-            }
+            Func<Property, Property> fConstructor = x => new Property(x.Name, this.SelectedBaseType, x.IsOptional, x.Comments, x.Cardinality);
+
+            ReplaceProp(nameof(Property.BaseType), p => p.BaseType != this.SelectedBaseType, fConstructor);
+        }
+
+        void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            var propName = (this.treeView1.SelectedNode.Tag is Property pProp) ? pProp.Name : null;
+            if (propName == null)
+                return;
+            Func<Property, Property> fConstructor = x => new Property(this.textBox1.Text, x.BaseType, x.IsOptional, x.Comments, x.Cardinality);
+            ReplaceProp(propName, p => this.textBox1.Text.IsValueString() && this.textBox1.Text != p.Name, fConstructor);
         }
     }
 }
