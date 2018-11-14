@@ -11,12 +11,18 @@ using System.Windows.Forms;
 namespace TypeProvisor.UI.Controls
 {
     [Designer(typeof(UcBaseTypeDesigner))]
-    public partial class UcComboBox: UserControl
+    public partial class UcComboBox : UserControl
     {
         public Control DesignHandle => this.label1;
         public UcComboBox()
         {
             InitializeComponent();
+        }
+
+        public object SelectedItem
+        {
+            get { return this.comboBox1.SelectedItem; }
+            set { this.comboBox1.SelectedItem = value; }
         }
 
         public string LabelText

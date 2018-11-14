@@ -15,6 +15,7 @@ namespace TypeProvisor.UI
              => new FSharpMap<TKey, TValue>(items);
         public static bool IsValueString(this string x)
             => BReusable.StringPatterns.isValueString.Invoke(x);
+        public static FSharpList<T> toList<T>(this IEnumerable<T> x) => SeqModule.ToList(x); //new FSharpList<T>()
     }
 
 }

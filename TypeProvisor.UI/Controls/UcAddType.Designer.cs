@@ -32,7 +32,7 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.txtTargetProjectName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.ucComboBox = new TypeProvisor.UI.Controls.UcComboBox();
+            this.ucBaseType1 = new TypeProvisor.UI.Controls.Editors.UcBaseType();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -52,7 +52,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.ucComboBox);
+            this.splitContainer1.Panel2.Controls.Add(this.ucBaseType1);
             this.splitContainer1.Size = new System.Drawing.Size(794, 371);
             this.splitContainer1.SplitterDistance = 298;
             this.splitContainer1.TabIndex = 0;
@@ -64,6 +64,7 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(298, 371);
             this.treeView1.TabIndex = 0;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // txtTargetProjectName
             // 
@@ -83,10 +84,12 @@
             // 
             // ucBaseType1
             // 
-            this.ucComboBox.Location = new System.Drawing.Point(76, 43);
-            this.ucComboBox.Name = "ucBaseType1";
-            this.ucComboBox.Size = new System.Drawing.Size(166, 30);
-            this.ucComboBox.TabIndex = 1;
+            this.ucBaseType1.Location = new System.Drawing.Point(3, 3);
+            this.ucBaseType1.Name = "ucBaseType1";
+            this.ucBaseType1.SelectedBaseType = null;
+            this.ucBaseType1.Size = new System.Drawing.Size(166, 28);
+            this.ucBaseType1.TabIndex = 0;
+            this.ucBaseType1.SelectedIndexChanged += new System.EventHandler(this.ucBaseType1_SelectedIndexChanged);
             // 
             // UcAddType
             // 
@@ -112,6 +115,6 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.TextBox txtTargetProjectName;
         private System.Windows.Forms.Label label1;
-        private UcComboBox ucComboBox;
+        private Editors.UcBaseType ucBaseType1;
     }
 }
