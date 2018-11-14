@@ -48,14 +48,21 @@ namespace TypeProvisor.UI.Controls
             return tn;
         }
 
-        void ReplaceTreeNode(TreeNode typeMetaNode, TypeMeta replacement)
+        // assumes the replacement is because a property changed, not the parent TypeMeta
+        void ReplaceTreeNode(TreeNode typeMetaNode, TypeMeta replacement, string prop)
         {
             if (!(typeMetaNode.Tag is TypeMeta)) return;
             var rNode = CreateTreeNode(replacement);
-            var parent = typeMetaNode.Parent;
             // this isn't preserving type order
+            var i = treeView1.Nodes.IndexOf(typeMetaNode);
+            treeView1.Nodes[i] = rNode;
+            rNode.Expand();
             treeView1.Nodes.Remove(typeMetaNode);
-            treeView1.Nodes.Add(rNode);
+            if (prop.IsNonValueString())
+                return;
+            if (!(FindPropertyTypeNode(rNode, prop) is TreeNode propNode)) return;
+            propNode.Expand();
+            this.treeView1.SelectedNode = propNode;
         }
 
         TreeNode FindTypeMetaNode(TreeNode node)
@@ -72,6 +79,17 @@ namespace TypeProvisor.UI.Controls
             if (node.Tag is Property)
                 return node;
             return FindPropertyTypeNode(node.Parent);
+        }
+
+        TreeNode FindPropertyTypeNode(TreeNode node, string propertyName)
+        {
+            if (node == null) return null;
+            if (node.Tag is Property p && p.Name == propertyName) return node;
+            if (node.Tag is TypeMeta tm)
+            {
+                return node.Nodes.Cast<TreeNode>().FirstOrDefault(tn => ((tn.Tag as Property)?.Name == propertyName));
+            }
+            return null;
         }
 
         void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -92,10 +110,10 @@ namespace TypeProvisor.UI.Controls
                 {
                     var props =
                         tm.Properties.Select(x => x.Name == p.Name
-                        ? new Property(x.Name, this.ucBaseType1.SelectedBaseType, x.IsOptional, x.Comments, x.Cardinality )
+                        ? new Property(x.Name, this.ucBaseType1.SelectedBaseType, x.IsOptional, x.Comments, x.Cardinality)
                         : x).toList();
                     var rTm = new TypeMeta(tm.Name, props, tm.Comments);
-                    ReplaceTreeNode(typeMetaNode, rTm);
+                    ReplaceTreeNode(typeMetaNode, rTm, p.Name);
                 }
             }
         }

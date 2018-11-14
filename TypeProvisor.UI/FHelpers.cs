@@ -16,6 +16,7 @@ namespace TypeProvisor.UI
         public static bool IsValueString(this string x)
             => BReusable.StringPatterns.isValueString.Invoke(x);
         public static FSharpList<T> toList<T>(this IEnumerable<T> x) => SeqModule.ToList(x); //new FSharpList<T>()
+        public static bool IsNonValueString(this string x) => string.IsNullOrWhiteSpace(x);
     }
 
 }
