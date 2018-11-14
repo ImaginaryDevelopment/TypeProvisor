@@ -11,6 +11,7 @@ using TypeProvisor;
 
 namespace TypeProvisor.UI.Controls
 {
+    // give the nodes a context menu https://stackoverflow.com/questions/14208944/c-sharp-right-click-on-treeview-nodes
     public partial class UcAddType : UserControl
     {
         IReadOnlyList<TypeMeta> items;

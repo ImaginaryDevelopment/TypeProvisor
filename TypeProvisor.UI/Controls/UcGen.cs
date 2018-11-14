@@ -13,6 +13,7 @@ using TypeProvisor;
 namespace TypeProvisor.UI
 {
 
+    // make the output scroll wheel font size adjustable: https://stackoverflow.com/questions/4429901/how-to-capture-mouse-wheel-on-panel
     public partial class UcGen : UserControl
     {
         IReadOnlyList<TypeMeta> items;

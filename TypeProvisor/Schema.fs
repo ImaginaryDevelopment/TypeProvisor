@@ -10,6 +10,19 @@ type BaseType =
     | Int
     | String of lengthLimit:int option
     | Decimal
+module BaseType =
+    open Microsoft.FSharp.Reflection
+    open System.Collections.Generic
+    open BReusable
+
+    let getNames () =
+        FSharpType.GetUnionCases(typeof<BaseType>)
+        |> Seq.map(fun c -> c.Name)
+        |> List.ofSeq
+        :> IReadOnlyList<_>
+    // get an instance of all DU cases, new cases, as long as they don't have new argument shapes, are already accounted for
+    let getDefaults () =
+        Unions.getDefaultValues<BaseType>()
 
 
 type Cardinality =

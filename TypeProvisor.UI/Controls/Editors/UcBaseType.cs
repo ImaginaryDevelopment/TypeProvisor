@@ -8,15 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TypeProvisor.UI.Controls
+namespace TypeProvisor.UI.Controls.Editors
 {
-    [Designer(typeof(UcBaseTypeDesigner))]
     public partial class UcBaseType : UserControl
     {
-        public Control DesignHandle => this.label1;
         public UcBaseType()
         {
             InitializeComponent();
+            this.ucComboBox1.Items = BaseTypeModule.getNames();
         }
     }
 }

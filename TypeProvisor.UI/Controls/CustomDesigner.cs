@@ -12,9 +12,13 @@ using System.Windows.Forms.Design.Behavior;
 
 namespace TypeProvisor.UI.Controls
 {
-    class UcBaseTypeDesigner : MyCustomDesigner<UcBaseType>
+    class UcBaseTypeDesigner : MyCustomDesigner<UcComboBox>
     {
         UcBaseTypeDesigner() : base(uc => uc.DesignHandle) { }
+    }
+    class UcComboBoxDesigner : MyCustomDesigner<UcComboBox>
+    {
+        UcComboBoxDesigner() : base(uc => uc.DesignHandle) { }
     }
 
     // implemented based on https://stackoverflow.com/questions/93541/baseline-snaplines-in-custom-winforms-controls
